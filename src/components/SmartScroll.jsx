@@ -34,17 +34,16 @@ export default class SmartScroll extends React.Component {
   }
 
   componentDidMount = () => {
-    const container = this.contentRef.current
     const viewPort = this.viewPortRef.current
     const content = this.contentRef.current
 
     this.ratio = viewPort.clientHeight / content.scrollHeight
 
-    const wheelEvent = container.onwheel ? 'wheel' // Modern browsers support "wheel"
+    const wheelEvent = viewPort.onwheel ? 'wheel' // Modern browsers support "wheel"
       : document.onmousewheel !== undefined ? 'mousewheel' // Webkit and IE support at least "mousewheel"
         : 'DOMMouseScroll' // let's assume that remaining browsers are older Firefox
 
-    container.addEventListener(wheelEvent, this.onWheel, false)
+    viewPort.addEventListener(wheelEvent, this.onWheel, false)
   }
 
   onWheel = event => {
@@ -62,6 +61,7 @@ export default class SmartScroll extends React.Component {
 
     current.style.top = `${Math.round(this.contentPosition * this.ratio)}px`
 
+    event.preventDefault()
     event.stopPropagation()
   }
 
