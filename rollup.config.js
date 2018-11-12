@@ -4,9 +4,9 @@ import babel from 'rollup-plugin-babel'
 // Convert CJS modules to ES6, so they can be included in a bundle
 import commonjs from 'rollup-plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
-import postcssModules from 'postcss-modules'
+// import postcssModules from 'postcss-modules'
 
-const cssExportMap = {}
+// const cssExportMap = {}
 
 export default {
   input: 'src/index.js',
